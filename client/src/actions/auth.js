@@ -18,6 +18,15 @@ export const attemptLogin = (username, password) => async dispatch => {
   }
 };
 
+export const GOOGLE_LOGIN_SUCCESS = 'GOOGLE_LOGIN_SUCCESS';
+export const GOOGLE_LOGIN_ERROR = 'GOOGLE_LOGIN_ERROR';
+export const googleLoginSuccess = ({ token, user }) => ({
+  type: GOOGLE_LOGIN_SUCCESS, token, user
+});
+export const googleLoginError = (error) => ({
+  type: GOOGLE_LOGIN_ERROR, error
+});
+
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
