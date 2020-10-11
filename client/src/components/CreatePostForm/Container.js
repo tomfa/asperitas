@@ -11,6 +11,7 @@ import { attemptCreatePost } from '../../actions/posts';
 import categories from '../../categories';
 import withAuth from '../../util/withAuth';
 import CreatePostForm from './Component';
+import requireAuthIfPrivate from '../../util/requireAuthIfPrivate';
 
 const validate = fields => {
   const errors = {};
@@ -41,6 +42,7 @@ const enhance = compose(
     initialValues: { category: categories[0], type: 'link' },
     validate
   }),
+  requireAuthIfPrivate,
   withAuth,
   connect(
     mapStateToProps,

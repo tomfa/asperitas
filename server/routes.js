@@ -3,20 +3,22 @@ const posts = require('./controllers/posts');
 const comments = require('./controllers/comments');
 const { jwtAuth, postAuth, commentAuth } = require('./auth');
 const router = require('express').Router();
+const config = require('./config');
+const readMiddleware = config.access.public ? [] : [jwtAuth];
 
 router.post('/login', users.validate(), users.login);
 router.post('/register', users.validate('register'), users.register);
 
 router.param('post', posts.load);
-router.get('/posts', posts.list);
-router.get('/posts/:category', posts.listByCategory);
-router.get('/post/:post', posts.show);
+router.get('/posts', ...readMiddleware, posts.list);
+router.get('/posts/:category', ...readMiddleware, posts.listByCategory);
+router.get('/post/:post', ...readMiddleware, posts.show);
 router.post('/posts', [jwtAuth, posts.validate], posts.create);
 router.delete('/post/:post', [jwtAuth, postAuth], posts.destroy);
 router.get('/post/:post/upvote', jwtAuth, posts.upvote);
 router.get('/post/:post/downvote', jwtAuth, posts.downvote);
 router.get('/post/:post/unvote', jwtAuth, posts.unvote);
-router.get('/user/:user', posts.listByUser);
+router.get('/user/:user', ...readMiddleware, posts.listByUser);
 
 router.param('comment', comments.load);
 router.post('/post/:post', [jwtAuth, comments.validate], comments.create);
