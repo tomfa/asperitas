@@ -10,9 +10,9 @@ import {
   SIGNUP_ERROR,
   LOGOUT
 } from '../actions/auth';
+import { loadAuthFromLocalStorage } from './utils';
 
-const token = localStorage.getItem('token');
-const user = token && jwtDecode(token).user;
+const { token, user } = loadAuthFromLocalStorage();
 
 const initialState = {
   ...(token && { token }),
