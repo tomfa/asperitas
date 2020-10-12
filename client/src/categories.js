@@ -1,10 +1,12 @@
 const categories = [
+  'aco academy',
+  'tech academy',
+  'articles',
+  'talks',
   'music',
-  'funny',
-  'videos',
-  'programming',
-  'news',
-  'fashion'
+  'random',
+  'lol',
+  'meta',
 ];
 
 export default categories;
