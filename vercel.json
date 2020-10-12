@@ -1,7 +1,8 @@
 {
   "version": 2,
   "env": {
-    "DATABASE_URL": "@asperitas-database-url"
+    "DATABASE_URL": "@asperitas-database-url",
+    "REACT_APP_GOOGLE_CLIENT_ID": "@aco-google-client-id"
   },
   "builds": [
     { "src": "client/package.json", "use": "@vercel/static-build",
