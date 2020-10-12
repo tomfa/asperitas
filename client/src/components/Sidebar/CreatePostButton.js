@@ -10,8 +10,13 @@ const CreatePostButton = styled(Button)`
   text-align: center;
 `;
 
-const SidebarCreatePostButton = () => (
-  <CreatePostButton as={Link} to='/createpost'>create post</CreatePostButton>
-);
+const SidebarCreatePostButton = ({ category }) => {
+  const url = category ? `/createpost?category=${category}` : '/createpost';
+  return (
+    <CreatePostButton as={Link} to={url}>
+      create post
+    </CreatePostButton>
+  );
+};
 
 export default SidebarCreatePostButton;

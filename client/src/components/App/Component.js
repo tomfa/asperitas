@@ -12,6 +12,7 @@ import CreatePostFormContainer from '../CreatePostForm/Container';
 import Home from '../Home';
 import config from '../../config/config';
 import GoogleLoginContainer from '../GoogleLogin/Container';
+import categories from '../../categories';
 
 const App = props => {
   const useGoogleLogin = !!config.access.google.clientId;

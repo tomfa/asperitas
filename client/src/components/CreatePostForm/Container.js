@@ -33,13 +33,21 @@ const mapStateToProps = state => ({
   post: state.posts.newPost,
   form: state.form.createPost
 });
+const getQueryParam = key => {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(key);
+};
 
 const mapDispatchToProps = { attemptCreatePost };
 
 const enhance = compose(
   reduxForm({
     form: 'createPost',
-    initialValues: { category: categories[0], type: 'link' },
+    initialValues: {
+      category:
+        categories.find(o => o === getQueryParam('category')) || categories[1],
+      type: 'link'
+    },
     validate
   }),
   requireAuthIfPrivate,
