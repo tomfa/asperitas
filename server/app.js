@@ -17,9 +17,12 @@ app.use(morgan('common'));
 app.use(passport.initialize());
 
 passport.use(localStrategy);
-if (config.access.google.clientId) {
+const isUsingGoogle = !!config.access.google.clientId;
+if (isUsingGoogle) {
+  console.log('Using Google JWT for auth');
   passport.use('jwt', googleStrategy);
 } else {
+  console.log('Using regular JWT for auth');
   passport.use('jwt', jwtStrategy);
 }
 
