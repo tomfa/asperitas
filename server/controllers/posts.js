@@ -52,7 +52,7 @@ exports.create = async (req, res, next) => {
     const { title, url, category, type, text } = req.body;
     const author = req.user.id;
     const post = await Post.create({
-      title,
+      title: title.trim(),
       url,
       author,
       category,
@@ -74,9 +74,6 @@ const titleIsValid = body('title')
 
   .isLength({ max: 100 })
   .withMessage('must be at most 100 characters long')
-
-  .custom(value => value.trim() === value)
-  .withMessage('cannot start or end with whitespace');
 
 const urlOrTextIsValid = (req, res, next) => {
   if (req.body.type === 'link') {
