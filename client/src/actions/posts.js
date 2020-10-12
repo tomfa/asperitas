@@ -67,7 +67,13 @@ const createPostSuccess = post => ({ type: CREATE_POST_SUCCESS, post });
 const createPostError = error => ({ type: CREATE_POST_ERROR, error });
 
 export const attemptCreatePost = post => async (dispatch, getState) => {
-  dispatch(createPostRequest);
+
+  // TODO: Move this cleaning of input
+  if (post.url && !post.url.startsWith('http')) {
+    post = { ...post, url: `https://${post.url}`};
+  }
+
+  dispatch({...createPostRequest, post });
   try {
     const { token } = getState().auth;
     const newPost = await createPost(post, token);

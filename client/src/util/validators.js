@@ -15,6 +15,7 @@ export const checkIfTrimmed = value =>
   value.trim() === value ? undefined : 'cannot start or end with whitespace';
 
 export const validUrl = value => {
+  if (!value.startsWith('http')) { value = `https://${value}`}
   try {
     new URL(value);
     return undefined;
