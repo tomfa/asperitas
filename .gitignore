@@ -8,9 +8,6 @@ node_modules/
 # testing
 /coverage
 
-# env vars
-.env
-
 # production
 /build
 client/build
@@ -22,6 +19,7 @@ client/dist
 .env.development.local
 .env.test.local
 .env.production.local
+client/.env
 
 npm-debug.log*
 yarn-debug.log*

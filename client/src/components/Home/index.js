@@ -6,6 +6,7 @@ import CategoryMenuContainer from '../CategoryMenu/Container';
 import PostListContainer from '../PostList/Container';
 import PostDetailContainer from '../PostDetail/Container';
 import SidebarContainer from '../Sidebar/Container';
+import requireAuthIfPrivate from '../../util/requireAuthIfPrivate';
 
 const Wrapper = styled.div`
   display: flex;
@@ -53,4 +54,4 @@ const Home = () => (
   </Wrapper>
 );
 
-export default Home;
+export default requireAuthIfPrivate(Home);

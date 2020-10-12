@@ -1,5 +1,8 @@
-const app = require('./app');
+require('dotenv').config({ path: '../.env' })
+
 const mongoose = require('mongoose');
+
+const app = require('./app');
 const config = require('./config');
 
 const connect = url => {

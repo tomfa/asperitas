@@ -3,14 +3,16 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
+  GOOGLE_LOGIN_SUCCESS,
+  GOOGLE_LOGIN_ERROR,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
   LOGOUT
 } from '../actions/auth';
+import { loadAuthFromLocalStorage } from './utils';
 
-const token = localStorage.getItem('token');
-const user = token && jwtDecode(token).user;
+const { token, user } = loadAuthFromLocalStorage();
 
 const initialState = {
   ...(token && { token }),
@@ -31,7 +33,14 @@ export default (state = initialState, action) => {
         token: action.token,
         user
       };
-
+    case GOOGLE_LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        token: action.token,
+        user: { username: action.user.name, id: action.user.googleId }
+      };
+    case GOOGLE_LOGIN_ERROR:
     case SIGNUP_ERROR:
     case LOGIN_ERROR:
       return { ...state, loading: false };

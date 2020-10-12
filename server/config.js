@@ -13,5 +13,12 @@ module.exports = {
   jwt: {
     secret: process.env.JWT_SECRET || 'development_secret',
     expiry: '7d'
+  },
+  access: {
+    // Shared env var with React app frontend
+    public: ['1', 'true'].includes(process.env.REACT_APP_PUBLIC_ACCESS),
+    google: {
+      clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID
+    }
   }
 };
